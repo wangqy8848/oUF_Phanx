@@ -496,7 +496,7 @@ local function Spawn(self, unit, isSingle)
 		self.Auras = auras
 	elseif unit == "target" then
 		local GAP = 6
-		local ROWS = 3
+		local ROWS = 2
 
 		local ICONS_PER_ROW   = floor((FRAME_WIDTH + GAP) / (FRAME_HEIGHT + GAP))
 		local BUFFS_PER_ROW   = 2
@@ -509,11 +509,11 @@ local function Spawn(self, unit, isSingle)
 
 		debuffs["growth-y"] = "UP"
 		debuffs["showType"] = true
-		debuffs["size"] = FRAME_HEIGHT
+		debuffs["size"] = FRAME_HEIGHT * 0.8
 		debuffs["spacing-x"] = GAP
 		debuffs["spacing-y"] = GAP * 2
 
-		debuffs.CustomFilter   = ns.CustomAuraFilters.target
+		-- debuffs.CustomFilter   = ns.CustomAuraFilters.target
 		debuffs.PostCreateIcon = ns.Auras_PostCreateIcon
 		debuffs.PostUpdateIcon = ns.Auras_PostUpdateIcon
 		debuffs.PostUpdate     = ns.Auras_PostUpdate -- required to detect Dead => Ghost
@@ -525,11 +525,11 @@ local function Spawn(self, unit, isSingle)
 
 		buffs["growth-y"] = "UP"
 		buffs["showType"] = false
-		buffs["size"] = FRAME_HEIGHT
+		buffs["size"] = FRAME_HEIGHT * 0.8
 		buffs["spacing-x"] = GAP
 		buffs["spacing-y"] = GAP * 2
 
-		buffs.CustomFilter   = ns.CustomAuraFilters.target
+		-- buffs.CustomFilter   = ns.CustomAuraFilters.target
 		buffs.PostCreateIcon = ns.Auras_PostCreateIcon
 		buffs.PostUpdateIcon = ns.Auras_PostUpdateIcon
 
