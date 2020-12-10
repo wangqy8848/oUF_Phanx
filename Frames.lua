@@ -58,6 +58,10 @@ local function Spawn(self, unit, isSingle)
 		self[k] = v
 	end
 
+	if(BackdropTemplateMixin) then
+		Mixin(self, BackdropTemplateMixin)
+	end
+
 	-------------------------
 	-- Border and backdrop --
 	-------------------------
@@ -71,7 +75,7 @@ local function Spawn(self, unit, isSingle)
 	-----------------------------------------------------------
 	-- Overlay to avoid reparenting stuff on powerless units --
 	-----------------------------------------------------------
-	self.overlay = CreateFrame("Frame", nil, self)
+	self.overlay = CreateFrame("Frame", nil, self, BackdropTemplateMixin and 'BackdropTemplate')
 	self.overlay:SetAllPoints(true)
 
 	--health.value:SetParent(self.overlay)
@@ -431,7 +435,7 @@ local function Spawn(self, unit, isSingle)
 		local GAP = 6
 		local ROWS = 2
 
-		local buffs = CreateFrame("Frame", nil, self)
+		local buffs = CreateFrame("Frame", nil, self, BackdropTemplateMixin and 'BackdropTemplate')
 		buffs:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 0, 24)
 		buffs:SetPoint("BOTTOMRIGHT", self, "TOPRIGHT", 0, 24)
 		buffs:SetHeight((FRAME_HEIGHT * ROWS) + (GAP * (ROWS - 1)))
@@ -453,7 +457,7 @@ local function Spawn(self, unit, isSingle)
 	elseif unit == "pet" then
 		local GAP = 6
 
-		local auras = CreateFrame("Frame", nil, self)
+		local auras = CreateFrame("Frame", nil, self, BackdropTemplateMixin and 'BackdropTemplate')
 		auras:SetPoint("BOTTOMLEFT", self, "TOPLEFT", 0, 24)
 		auras:SetPoint("BOTTOMRIGHT", self, "TOPRIGHT", 0, 24)
 		auras:SetHeight(FRAME_HEIGHT)
@@ -476,7 +480,7 @@ local function Spawn(self, unit, isSingle)
 		local GAP = 6
 		local MAX_ICONS = 5
 
-		local auras = CreateFrame("Frame", nil, self)
+		local auras = CreateFrame("Frame", nil, self, BackdropTemplateMixin and 'BackdropTemplate')
 		auras:SetPoint("RIGHT", self, "LEFT", -10, 0)
 		auras:SetHeight(FRAME_HEIGHT)
 		auras:SetWidth((FRAME_HEIGHT * (MAX_ICONS + 1)) + (GAP * MAX_ICONS))
@@ -504,7 +508,7 @@ local function Spawn(self, unit, isSingle)
 		local MAX_BUFFS       = ROWS * BUFFS_PER_ROW
 		local MAX_DEBUFFS     = ROWS * DEBUFFS_PER_ROW
 
-		local debuffs = CreateFrame("Frame", nil, self)
+		local debuffs = CreateFrame("Frame", nil, self, BackdropTemplateMixin and 'BackdropTemplate')
 		debuffs:SetHeight((FRAME_HEIGHT * ROWS) + (GAP * 2 * (ROWS - 1)))
 
 		debuffs["growth-y"] = "UP"
@@ -520,7 +524,7 @@ local function Spawn(self, unit, isSingle)
 
 		self.Debuffs = debuffs
 
-		local buffs = CreateFrame("Frame", nil, self)
+		local buffs = CreateFrame("Frame", nil, self, BackdropTemplateMixin and 'BackdropTemplate')
 		buffs:SetHeight((FRAME_HEIGHT * ROWS) + (GAP * 2 * (ROWS - 1)))
 
 		buffs["growth-y"] = "UP"
